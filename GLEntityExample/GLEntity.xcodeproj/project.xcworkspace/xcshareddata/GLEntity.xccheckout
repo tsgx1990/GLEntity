@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>825B3359-2CEC-4031-B499-7EE7EB0C31E5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GLEntity</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B6A7D1B273A36ABE7BCA8EC6305DD9E92B2A9E09</key>
+		<string>github.com:tsgx1990/GLEntity.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GLEntityExample/GLEntity.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B6A7D1B273A36ABE7BCA8EC6305DD9E92B2A9E09</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:tsgx1990/GLEntity.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B6A7D1B273A36ABE7BCA8EC6305DD9E92B2A9E09</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B6A7D1B273A36ABE7BCA8EC6305DD9E92B2A9E09</string>
+			<key>IDESourceControlWCCName</key>
+			<string>GLEntity</string>
+		</dict>
+	</array>
+</dict>
+</plist>
