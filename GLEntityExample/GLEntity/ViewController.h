@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *mTableView;
+@property (weak, nonatomic) IBOutlet UIButton *titleBtn;
+@property (strong, nonatomic) IBOutlet UIButton *botButton;
+
+- (IBAction)botBtnPressed:(id)sender;
 
 @end
 
