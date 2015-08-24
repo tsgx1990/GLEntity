@@ -1,6 +1,5 @@
 # GLEntity
-interconversion between entity and dictionary
-// 用于entity和字典之间的转换，以及entity的数据库存取
+// 用于entity的数据库存取，以及和字典之间的转换
 
 
 // 规则1：
