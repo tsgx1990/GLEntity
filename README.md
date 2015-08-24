@@ -1,12 +1,13 @@
 # GLEntity
 interconversion between entity and dictionary
+// 用于entity和字典之间的转换，以及entity的数据库存取
 
 
 // 规则1：
    entity的属性名的命名规则为 column_ + key名
 
 // 规则2：
-   如果字典中有字典，需要将该字典设为一个entity属性
+   如果字典中有字典，需要将内层字典设为一个entity属性
 
 // 规则3：
    如果字典里有一个数组且数组元素是字典，则需要将该数组设为一个存储entity的数组；如果这个数组元素不是字典，则将该数组设为entity的一个字符串属性，用于存储该数组的json串
