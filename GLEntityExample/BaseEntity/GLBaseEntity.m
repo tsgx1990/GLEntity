@@ -1,9 +1,9 @@
 //
-//  TNCBaseEntity.m
-//  Toon
+//  GLBaseEntity.m
+//  GLEntity
 //
 //  Created by guanglong on 15/8/5.
-//  Copyright (c) 2015年 思源. All rights reserved.
+//  Copyright (c) 2015年 guanglong. All rights reserved.
 //
 
 #import "GLBaseEntity.h"
@@ -50,7 +50,7 @@ NSString* convertValid(NSString* rawString)
 // 表中的字段名默认和entity的属性名相同，可以重写 + (NSMutableDictionary*)propertyColumnMap 改变二者之间的对应关系
 
 #pragma mark - - entity or entities 的初始化操作
-+ (TNCEntityArray *)entitiesWithArray:(NSArray *)array
++ (GLEntityArray *)entitiesWithArray:(NSArray *)array
 {
     if (![array isKindOfClass:[NSArray class]]) {
         return [self entitiesWithData:array];
@@ -88,7 +88,7 @@ NSString* convertValid(NSString* rawString)
     for (NSString* key in dict.allKeys) {
         
         id value = [dict objectForKey:key];
-        NSString* columnKey = [NSString stringWithFormat:@"%@%@", TNC_COLUMN_PREFIX, key];
+        NSString* columnKey = [NSString stringWithFormat:@"%@%@", GL_COLUMN_PREFIX, key];
         
         if ([value isKindOfClass:[NSDictionary class]]) {
             Class subEntityClass = [self subEntityClassForKey:key];
@@ -107,7 +107,7 @@ NSString* convertValid(NSString* rawString)
             if ([[value firstObject] isKindOfClass:[NSDictionary class]]) {
                 
                 Class subEntityClass = [self subEntityClassForKey:key];
-                TNCEntityArray* subEntities = [subEntityClass entitiesWithArray:(NSArray*)value];
+                GLEntityArray* subEntities = [subEntityClass entitiesWithArray:(NSArray*)value];
                 [subEntities setSuperEntity:entity];
                 [entity setValue:subEntities forKey:columnKey];
             }
@@ -156,7 +156,7 @@ NSString* convertValid(NSString* rawString)
 // 多维数组情况下，子数组entity的类命名方法
 + (Class)subEntitiesClass
 {
-    NSString* entitiesClassStr = [NSString stringWithFormat:@"%@%@", NSStringFromClass([self class]), TNC_PURELIST_SUFFIX];
+    NSString* entitiesClassStr = [NSString stringWithFormat:@"%@%@", NSStringFromClass([self class]), GL_PURELIST_SUFFIX];
     Class subEntitiesClass = NSClassFromString(entitiesClassStr);
     
     NSString* assertStr = [NSString stringWithFormat:@"'[%@ class]' must be subclass of [TNCBaseEntity class]", entitiesClassStr];
@@ -177,7 +177,7 @@ NSString* convertValid(NSString* rawString)
         objc_property_t property = properties[i];
         NSString* propertyStr = [NSString stringWithFormat:@"%s", property_getName(property)];
         
-        if ([propertyStr hasPrefix:TNC_COLUMN_PREFIX]) {
+        if ([propertyStr hasPrefix:GL_COLUMN_PREFIX]) {
             
             // 获取属性的数据类型
             char* attrChar = property_copyAttributeValue(property, "T");
@@ -235,7 +235,7 @@ NSString* convertValid(NSString* rawString)
         objc_property_t property = properties[i];
         NSString* propertyStr = [NSString stringWithFormat:@"%s", property_getName(property)];
         
-        if ([propertyStr hasPrefix:TNC_COLUMN_PREFIX] || [propertyStr hasPrefix:TNC_FOREIGN_PREFIX]) {
+        if ([propertyStr hasPrefix:GL_COLUMN_PREFIX] || [propertyStr hasPrefix:GL_FOREIGN_PREFIX]) {
             
             // 获取属性的数据类型
             char* attrChar = property_copyAttributeValue(property, "T");
@@ -409,11 +409,11 @@ NSString* convertValid(NSString* rawString)
         objc_property_t property = properties[i];
         NSString* propertyStr = [NSString stringWithFormat:@"%s", property_getName(property)];
         
-        if ([propertyStr hasPrefix:TNC_COLUMN_PREFIX]) {
+        if ([propertyStr hasPrefix:GL_COLUMN_PREFIX]) {
             
             id propertyValue = [self valueForKey:propertyStr];
             
-            NSString* nonPrefixPropertyStr = [propertyStr substringFromIndex:TNC_COLUMN_PREFIX.length];
+            NSString* nonPrefixPropertyStr = [propertyStr substringFromIndex:GL_COLUMN_PREFIX.length];
             
             if ([propertyValue isKindOfClass:[NSArray class]]) {
                 [mEntityDict setValue:[propertyValue dictionaryArray] forKey:nonPrefixPropertyStr];
@@ -440,7 +440,7 @@ NSString* convertValid(NSString* rawString)
 
 + (NSString *)tableName
 {
-    return [NSString stringWithFormat:@"%@%@", TNC_TABLE_PREFIX, NSStringFromClass([self class])];
+    return [NSString stringWithFormat:@"%@%@", GL_TABLE_PREFIX, NSStringFromClass([self class])];
 }
 
 - (NSString *)superTableName
@@ -450,9 +450,9 @@ NSString* convertValid(NSString* rawString)
 
 @end
 
-#pragma mark - - TNCEntityArray
+#pragma mark - - GLEntityArray
 
-@implementation TNCEntityArray (TNCEntities)
+@implementation GLEntityArray (GLEntities)
 
 - (void)setSuperEntity:(GLBaseEntity *)superEntity
 {

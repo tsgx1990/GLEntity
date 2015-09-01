@@ -1,6 +1,6 @@
 //
-//  TNCDBManager.m
-//  TNCBaseEntityDemo
+//  GLDBManager.m
+//  GLEntity
 //
 //  Created by guanglong on 15/8/11.
 //  Copyright (c) 2015年 guanglong. All rights reserved.
@@ -120,7 +120,7 @@
             objc_property_t property = properties[i];
             NSString* propertyStr = [NSString stringWithFormat:@"%s", property_getName(property)];
             
-            if ([propertyStr hasPrefix:TNC_COLUMN_PREFIX]) {
+            if ([propertyStr hasPrefix:GL_COLUMN_PREFIX]) {
                 
                 // 获取属性的数据类型
                 char* attrChar = property_copyAttributeValue(property, "T");

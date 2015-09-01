@@ -1,9 +1,9 @@
 //
-//  TNCBaseEntity.h
-//  Toon
+//  GLBaseEntity.h
+//  GLEntity
 //
 //  Created by guanglong on 15/8/5.
-//  Copyright (c) 2015年 思源. All rights reserved.
+//  Copyright (c) 2015年 guanglong. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,12 +11,12 @@
 #import "JSONKit.h"
 #import "GLDBManager.h"
 
-#define TNCEntityArray     NSArray
+#define GLEntityArray     NSArray
 
-#define TNC_TABLE_PREFIX        @"table_"
-#define TNC_COLUMN_PREFIX       @"column_"
-#define TNC_PURELIST_SUFFIX     @"_ls"
-#define TNC_FOREIGN_PREFIX      @"foreign_"
+#define GL_TABLE_PREFIX        @"table_"
+#define GL_COLUMN_PREFIX       @"column_"
+#define GL_PURELIST_SUFFIX     @"_ls"
+#define GL_FOREIGN_PREFIX      @"foreign_"
 
 NSString* convertValid(NSString* rawString);
 
@@ -182,7 +182,7 @@ NSString* convertValid(NSString* rawString);
  *
  *  @return 返回一个entity或entity数组，或nil
  */
-+ (TNCEntityArray*)entitiesWithArray:(NSArray*)array;
++ (GLEntityArray*)entitiesWithArray:(NSArray*)array;
 
 
 #pragma mark - - 数据库操作
@@ -279,9 +279,9 @@ NSString* convertValid(NSString* rawString);
 @end
 
 
-#pragma mark - - TNCEntityArray
+#pragma mark - - GLEntityArray
 
-@interface TNCEntityArray (TNCEntities)
+@interface GLEntityArray (GLEntities)
 
 /**
  *  设置array中每个entity的superEntity
