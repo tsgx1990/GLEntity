@@ -270,6 +270,15 @@
     return mDataArray;
 }
 
+- (NSInteger)countBySql:(NSString *)countSql
+{
+    __block NSInteger count = 0;
+    [self.fmdbQueue inDatabase:^(FMDatabase *db) {
+        count = [db intForQuery:countSql];
+    }];
+    return count;
+}
+
 #pragma mark - - create dbQueue
 - (FMDatabaseQueue *)fmdbQueue{
     if (!_fmdbQueue) {

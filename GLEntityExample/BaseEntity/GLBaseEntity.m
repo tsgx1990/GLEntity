@@ -386,6 +386,17 @@ NSString* convertValid(NSString* rawString)
     return [[GLDBManager shareInstance] updateBySql:updateSql];
 }
 
++ (NSInteger)countMeetingCondition:(NSString *)condition
+{
+    NSString* countSql = [NSString stringWithFormat:@"select count(*) from %@ %@", [self tableName], convertValid(condition)];
+    return [[GLDBManager shareInstance] countBySql:countSql];
+}
+
+- (NSInteger)countMeetingCondition:(NSString *)condition
+{
+    return [[self class] countMeetingCondition:condition];
+}
+
 #pragma mark - - entity转字典
 - (NSDictionary *)dictionary
 {

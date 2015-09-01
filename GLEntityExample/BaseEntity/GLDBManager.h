@@ -21,4 +21,6 @@
 
 - (NSArray*)queryBySql:(NSString*)querySql;
 
+- (NSInteger)countBySql:(NSString*)countSql;
+
 @end

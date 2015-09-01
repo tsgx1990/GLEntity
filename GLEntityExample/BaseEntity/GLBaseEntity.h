@@ -214,6 +214,23 @@ NSString* convertValid(NSString* rawString);
  */
 + (BOOL)updateDataWithParams:(NSString*)params byCondition:(NSString*)condition;
 
+/**
+ *  满足条件的数据条数，直接调用
+ *
+ *  @param condition 数据查询条件
+ *
+ *  @return 满足条件的数据条数
+ */
++ (NSInteger)countMeetingCondition:(NSString*)condition;
+
+/**
+ *  该方法的实现依赖于与其对应的静态方法，无需重写，直接调用
+ *
+ *  @param condition 数据查询条件
+ *
+ *  @return 满足条件的数据条数
+ */
+- (NSInteger)countMeetingCondition:(NSString*)condition;
 
 /*
  不需要在子类实现的方法
