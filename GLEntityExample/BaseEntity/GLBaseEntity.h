@@ -22,7 +22,7 @@ NSString* convertValid(NSString* rawString);
 
 @class GLBaseEntity;
 
-@protocol TNCVirtualEntity <NSObject>
+@protocol GLVirtualEntity <NSObject>
 
 @optional
 //@property (nonatomic, strong, readonly) NSArray* caredProperties;
@@ -115,7 +115,7 @@ NSString* convertValid(NSString* rawString);
 
 @end
 
-@interface GLBaseEntity : NSObject<TNCVirtualEntity>
+@interface GLBaseEntity : NSObject<GLVirtualEntity>
 
 /**
  *  父表对应的entity

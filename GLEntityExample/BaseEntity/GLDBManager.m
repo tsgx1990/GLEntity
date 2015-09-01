@@ -145,7 +145,7 @@
                         }
                     }
                     else if ([propertyValue isKindOfClass:[GLBaseEntity class]]) {
-                        NSLog(@"this is a TNCBaseEntity");
+                        NSLog(@"this is a GLBaseEntity");
                         
                         if (![self saveDataArray:@[propertyValue] withFMDB:db]) {
                             return NO;
