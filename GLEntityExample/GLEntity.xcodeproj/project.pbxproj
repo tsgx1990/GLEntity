@@ -28,10 +28,10 @@
 		E7A597181B857AA8004D02FC /* SubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A597131B857AA8004D02FC /* SubViewController.xib */; };
 		E7A597191B857AA8004D02FC /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A597151B857AA8004D02FC /* TableViewCell.m */; };
 		E7A5971A1B857AA8004D02FC /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A597161B857AA8004D02FC /* TableViewCell.xib */; };
-		E7DB1BBD1BA11CC60058A2B5 /* GLEntitySpec.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E7DB1BBC1BA11CC60058A2B5 /* GLEntitySpec.podspec */; };
 		E7DB1BC31BA123B90058A2B5 /* GLBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BC01BA123B90058A2B5 /* GLBaseEntity.m */; };
 		E7DB1BC41BA123B90058A2B5 /* GLDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BC21BA123B90058A2B5 /* GLDBManager.m */; };
-		E7DB1BC61BA164C10058A2B5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E7DB1BC51BA164C10058A2B5 /* LICENSE */; };
+		E7DB1BC81BA16E6E0058A2B5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E7DB1BC71BA16E6E0058A2B5 /* LICENSE */; };
+		E7DB1BCA1BA16E770058A2B5 /* GLEntity.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E7DB1BC91BA16E770058A2B5 /* GLEntity.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,12 +85,12 @@
 		E7A597151B857AA8004D02FC /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		E7A597161B857AA8004D02FC /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		E7A5971B1B859644004D02FC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		E7DB1BBC1BA11CC60058A2B5 /* GLEntitySpec.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GLEntitySpec.podspec; path = ../GLEntitySpec.podspec; sourceTree = "<group>"; };
 		E7DB1BBF1BA123B90058A2B5 /* GLBaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBaseEntity.h; sourceTree = "<group>"; };
 		E7DB1BC01BA123B90058A2B5 /* GLBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLBaseEntity.m; sourceTree = "<group>"; };
 		E7DB1BC11BA123B90058A2B5 /* GLDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDBManager.h; sourceTree = "<group>"; };
 		E7DB1BC21BA123B90058A2B5 /* GLDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDBManager.m; sourceTree = "<group>"; };
-		E7DB1BC51BA164C10058A2B5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		E7DB1BC71BA16E6E0058A2B5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		E7DB1BC91BA16E770058A2B5 /* GLEntity.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GLEntity.podspec; path = ../GLEntity.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				E7A5971B1B859644004D02FC /* README.md */,
-				E7DB1BBC1BA11CC60058A2B5 /* GLEntitySpec.podspec */,
-				E7DB1BC51BA164C10058A2B5 /* LICENSE */,
+				E7DB1BC91BA16E770058A2B5 /* GLEntity.podspec */,
+				E7DB1BC71BA16E6E0058A2B5 /* LICENSE */,
 				E7DB1BBE1BA123B90058A2B5 /* GLBaseEntity */,
 				E7A597071B85794D004D02FC /* Entities */,
 				E7A596BF1B8564D0004D02FC /* GLEntity */,
@@ -332,10 +332,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7DB1BCA1BA16E770058A2B5 /* GLEntity.podspec in Resources */,
+				E7DB1BC81BA16E6E0058A2B5 /* LICENSE in Resources */,
 				E7A596CC1B8564D0004D02FC /* Main.storyboard in Resources */,
-				E7DB1BBD1BA11CC60058A2B5 /* GLEntitySpec.podspec in Resources */,
 				E7A5971A1B857AA8004D02FC /* TableViewCell.xib in Resources */,
-				E7DB1BC61BA164C10058A2B5 /* LICENSE in Resources */,
 				E7A596D11B8564D0004D02FC /* LaunchScreen.xib in Resources */,
 				E7A596CE1B8564D0004D02FC /* Images.xcassets in Resources */,
 				E7A597181B857AA8004D02FC /* SubViewController.xib in Resources */,
