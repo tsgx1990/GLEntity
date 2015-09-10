@@ -22,8 +22,6 @@
 		E7A597181B857AA8004D02FC /* SubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A597131B857AA8004D02FC /* SubViewController.xib */; };
 		E7A597191B857AA8004D02FC /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A597151B857AA8004D02FC /* TableViewCell.m */; };
 		E7A5971A1B857AA8004D02FC /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A597161B857AA8004D02FC /* TableViewCell.xib */; };
-		E7DB1BC31BA123B90058A2B5 /* GLBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BC01BA123B90058A2B5 /* GLBaseEntity.m */; };
-		E7DB1BC41BA123B90058A2B5 /* GLDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BC21BA123B90058A2B5 /* GLDBManager.m */; };
 		E7DB1BC81BA16E6E0058A2B5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E7DB1BC71BA16E6E0058A2B5 /* LICENSE */; };
 		E7DB1BCA1BA16E770058A2B5 /* GLEntity.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E7DB1BC91BA16E770058A2B5 /* GLEntity.podspec */; };
 		E7DB1BCF1BA175450058A2B5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BCD1BA175450058A2B5 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -32,6 +30,8 @@
 		E7DB1BDF1BA176130058A2B5 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BD71BA176130058A2B5 /* FMDatabasePool.m */; };
 		E7DB1BE01BA176130058A2B5 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BD91BA176130058A2B5 /* FMDatabaseQueue.m */; };
 		E7DB1BE11BA176130058A2B5 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BDC1BA176130058A2B5 /* FMResultSet.m */; };
+		E7DB1BF11BA17FFA0058A2B5 /* GLBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BEE1BA17FFA0058A2B5 /* GLBaseEntity.m */; };
+		E7DB1BF21BA17FFA0058A2B5 /* GLDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BF01BA17FFA0058A2B5 /* GLDBManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,10 +72,6 @@
 		E7A597151B857AA8004D02FC /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		E7A597161B857AA8004D02FC /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		E7A5971B1B859644004D02FC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		E7DB1BBF1BA123B90058A2B5 /* GLBaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBaseEntity.h; sourceTree = "<group>"; };
-		E7DB1BC01BA123B90058A2B5 /* GLBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLBaseEntity.m; sourceTree = "<group>"; };
-		E7DB1BC11BA123B90058A2B5 /* GLDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDBManager.h; sourceTree = "<group>"; };
-		E7DB1BC21BA123B90058A2B5 /* GLDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDBManager.m; sourceTree = "<group>"; };
 		E7DB1BC71BA16E6E0058A2B5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E7DB1BC91BA16E770058A2B5 /* GLEntity.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GLEntity.podspec; path = ../GLEntity.podspec; sourceTree = "<group>"; };
 		E7DB1BCC1BA175450058A2B5 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
@@ -91,6 +87,10 @@
 		E7DB1BDA1BA176130058A2B5 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		E7DB1BDB1BA176130058A2B5 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		E7DB1BDC1BA176130058A2B5 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		E7DB1BED1BA17FFA0058A2B5 /* GLBaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBaseEntity.h; sourceTree = "<group>"; };
+		E7DB1BEE1BA17FFA0058A2B5 /* GLBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLBaseEntity.m; sourceTree = "<group>"; };
+		E7DB1BEF1BA17FFA0058A2B5 /* GLDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDBManager.h; sourceTree = "<group>"; };
+		E7DB1BF01BA17FFA0058A2B5 /* GLDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDBManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +118,7 @@
 				E7A5971B1B859644004D02FC /* README.md */,
 				E7DB1BC91BA16E770058A2B5 /* GLEntity.podspec */,
 				E7DB1BC71BA16E6E0058A2B5 /* LICENSE */,
-				E7DB1BBE1BA123B90058A2B5 /* GLBaseEntity */,
+				E7DB1BEC1BA17FFA0058A2B5 /* GLBaseEntity */,
 				E7A597071B85794D004D02FC /* Entities */,
 				E7A596BF1B8564D0004D02FC /* GLEntity */,
 				E7A596D91B8564D0004D02FC /* GLEntityTests */,
@@ -214,17 +214,6 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		E7DB1BBE1BA123B90058A2B5 /* GLBaseEntity */ = {
-			isa = PBXGroup;
-			children = (
-				E7DB1BBF1BA123B90058A2B5 /* GLBaseEntity.h */,
-				E7DB1BC01BA123B90058A2B5 /* GLBaseEntity.m */,
-				E7DB1BC11BA123B90058A2B5 /* GLDBManager.h */,
-				E7DB1BC21BA123B90058A2B5 /* GLDBManager.m */,
-			);
-			path = GLBaseEntity;
-			sourceTree = "<group>";
-		};
 		E7DB1BCB1BA175450058A2B5 /* JSONKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +239,18 @@
 				E7DB1BDC1BA176130058A2B5 /* FMResultSet.m */,
 			);
 			path = fmdb;
+			sourceTree = "<group>";
+		};
+		E7DB1BEC1BA17FFA0058A2B5 /* GLBaseEntity */ = {
+			isa = PBXGroup;
+			children = (
+				E7DB1BED1BA17FFA0058A2B5 /* GLBaseEntity.h */,
+				E7DB1BEE1BA17FFA0058A2B5 /* GLBaseEntity.m */,
+				E7DB1BEF1BA17FFA0058A2B5 /* GLDBManager.h */,
+				E7DB1BF01BA17FFA0058A2B5 /* GLDBManager.m */,
+			);
+			name = GLBaseEntity;
+			path = ../GLBaseEntity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,11 +365,11 @@
 				E7DB1BDD1BA176130058A2B5 /* FMDatabase.m in Sources */,
 				E7DB1BDE1BA176130058A2B5 /* FMDatabaseAdditions.m in Sources */,
 				E7A596C61B8564D0004D02FC /* AppDelegate.m in Sources */,
+				E7DB1BF11BA17FFA0058A2B5 /* GLBaseEntity.m in Sources */,
 				E7DB1BE11BA176130058A2B5 /* FMResultSet.m in Sources */,
-				E7DB1BC31BA123B90058A2B5 /* GLBaseEntity.m in Sources */,
 				E7DB1BCF1BA175450058A2B5 /* JSONKit.m in Sources */,
-				E7DB1BC41BA123B90058A2B5 /* GLDBManager.m in Sources */,
 				E7A5970A1B8579CD004D02FC /* Person.m in Sources */,
+				E7DB1BF21BA17FFA0058A2B5 /* GLDBManager.m in Sources */,
 				E7A597101B857A1D004D02FC /* Person_sisters.m in Sources */,
 				E7A596C31B8564D0004D02FC /* main.m in Sources */,
 				E7A597191B857AA8004D02FC /* TableViewCell.m in Sources */,
