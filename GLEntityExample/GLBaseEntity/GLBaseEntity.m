@@ -148,6 +148,7 @@ NSString* convertValid(NSString* rawString)
     Class subEntityClass = NSClassFromString(entityClassStr);
     
     NSString* assertStr = [NSString stringWithFormat:@"'[%@ class]' must be subclass of [GLBaseEntity class]", entityClassStr];
+    NSLog(@"assertStr:%@", assertStr);
     NSAssert([subEntityClass isSubclassOfClass:[GLBaseEntity class]], assertStr);
     
     return subEntityClass;
@@ -160,6 +161,7 @@ NSString* convertValid(NSString* rawString)
     Class subEntitiesClass = NSClassFromString(entitiesClassStr);
     
     NSString* assertStr = [NSString stringWithFormat:@"'[%@ class]' must be subclass of [GLBaseEntity class]", entitiesClassStr];
+    NSLog(@"assertStr:%@", assertStr);
     NSAssert([subEntitiesClass isSubclassOfClass:[GLBaseEntity class]], assertStr);
     
     return subEntitiesClass;

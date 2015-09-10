@@ -125,7 +125,7 @@ Pod::Spec.new do |s|
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
 
-  s.library = "libsqlite3"
+  s.library = "sqlite3"
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -138,7 +138,7 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
 
-  s.dependency "JSONKit", "~> 1.4"
+  s.dependency 'JSONKit-NoWarning', '~> 1.2'
   s.dependency "FMDB", "~> 2.5"
 
 end
