@@ -21,8 +21,6 @@
 		E7A596FA1B85658F004D02FC /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A596F21B85658F004D02FC /* FMResultSet.m */; };
 		E7A596FB1B85658F004D02FC /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A596F51B85658F004D02FC /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E7A596FF1B856686004D02FC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A596FE1B856686004D02FC /* libsqlite3.dylib */; };
-		E7A597051B8568CB004D02FC /* GLDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A597021B8568CB004D02FC /* GLDBManager.m */; };
-		E7A597061B8568CB004D02FC /* GLBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A597041B8568CB004D02FC /* GLBaseEntity.m */; };
 		E7A5970A1B8579CD004D02FC /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A597091B8579CD004D02FC /* Person.m */; };
 		E7A5970D1B8579F3004D02FC /* Person_birthday.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5970C1B8579F3004D02FC /* Person_birthday.m */; };
 		E7A597101B857A1D004D02FC /* Person_sisters.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5970F1B857A1D004D02FC /* Person_sisters.m */; };
@@ -30,6 +28,9 @@
 		E7A597181B857AA8004D02FC /* SubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A597131B857AA8004D02FC /* SubViewController.xib */; };
 		E7A597191B857AA8004D02FC /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A597151B857AA8004D02FC /* TableViewCell.m */; };
 		E7A5971A1B857AA8004D02FC /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7A597161B857AA8004D02FC /* TableViewCell.xib */; };
+		E7DB1BBD1BA11CC60058A2B5 /* GLEntitySpec.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E7DB1BBC1BA11CC60058A2B5 /* GLEntitySpec.podspec */; };
+		E7DB1BC31BA123B90058A2B5 /* GLBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BC01BA123B90058A2B5 /* GLBaseEntity.m */; };
+		E7DB1BC41BA123B90058A2B5 /* GLDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BC21BA123B90058A2B5 /* GLDBManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,10 +71,6 @@
 		E7A596F41B85658F004D02FC /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		E7A596F51B85658F004D02FC /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		E7A596FE1B856686004D02FC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		E7A597011B8568CB004D02FC /* GLDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDBManager.h; sourceTree = "<group>"; };
-		E7A597021B8568CB004D02FC /* GLDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDBManager.m; sourceTree = "<group>"; };
-		E7A597031B8568CB004D02FC /* GLBaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBaseEntity.h; sourceTree = "<group>"; };
-		E7A597041B8568CB004D02FC /* GLBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLBaseEntity.m; sourceTree = "<group>"; };
 		E7A597081B8579CD004D02FC /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		E7A597091B8579CD004D02FC /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		E7A5970B1B8579F3004D02FC /* Person_birthday.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person_birthday.h; sourceTree = "<group>"; };
@@ -87,6 +84,11 @@
 		E7A597151B857AA8004D02FC /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		E7A597161B857AA8004D02FC /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		E7A5971B1B859644004D02FC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		E7DB1BBC1BA11CC60058A2B5 /* GLEntitySpec.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GLEntitySpec.podspec; path = ../GLEntitySpec.podspec; sourceTree = "<group>"; };
+		E7DB1BBF1BA123B90058A2B5 /* GLBaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBaseEntity.h; sourceTree = "<group>"; };
+		E7DB1BC01BA123B90058A2B5 /* GLBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLBaseEntity.m; sourceTree = "<group>"; };
+		E7DB1BC11BA123B90058A2B5 /* GLDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDBManager.h; sourceTree = "<group>"; };
+		E7DB1BC21BA123B90058A2B5 /* GLDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDBManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				E7A5971B1B859644004D02FC /* README.md */,
-				E7A597001B8568B5004D02FC /* BaseEntity */,
+				E7DB1BBC1BA11CC60058A2B5 /* GLEntitySpec.podspec */,
+				E7DB1BBE1BA123B90058A2B5 /* GLBaseEntity */,
 				E7A597071B85794D004D02FC /* Entities */,
 				E7A596BF1B8564D0004D02FC /* GLEntity */,
 				E7A596D91B8564D0004D02FC /* GLEntityTests */,
@@ -222,17 +225,6 @@
 			path = Frameworks;
 			sourceTree = "<group>";
 		};
-		E7A597001B8568B5004D02FC /* BaseEntity */ = {
-			isa = PBXGroup;
-			children = (
-				E7A597011B8568CB004D02FC /* GLDBManager.h */,
-				E7A597021B8568CB004D02FC /* GLDBManager.m */,
-				E7A597031B8568CB004D02FC /* GLBaseEntity.h */,
-				E7A597041B8568CB004D02FC /* GLBaseEntity.m */,
-			);
-			path = BaseEntity;
-			sourceTree = "<group>";
-		};
 		E7A597071B85794D004D02FC /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +236,17 @@
 				E7A5970F1B857A1D004D02FC /* Person_sisters.m */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		E7DB1BBE1BA123B90058A2B5 /* GLBaseEntity */ = {
+			isa = PBXGroup;
+			children = (
+				E7DB1BBF1BA123B90058A2B5 /* GLBaseEntity.h */,
+				E7DB1BC01BA123B90058A2B5 /* GLBaseEntity.m */,
+				E7DB1BC11BA123B90058A2B5 /* GLDBManager.h */,
+				E7DB1BC21BA123B90058A2B5 /* GLDBManager.m */,
+			);
+			path = GLBaseEntity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7A596CC1B8564D0004D02FC /* Main.storyboard in Resources */,
+				E7DB1BBD1BA11CC60058A2B5 /* GLEntitySpec.podspec in Resources */,
 				E7A5971A1B857AA8004D02FC /* TableViewCell.xib in Resources */,
 				E7A596D11B8564D0004D02FC /* LaunchScreen.xib in Resources */,
 				E7A596CE1B8564D0004D02FC /* Images.xcassets in Resources */,
@@ -354,11 +358,11 @@
 				E7A596F81B85658F004D02FC /* FMDatabasePool.m in Sources */,
 				E7A596FB1B85658F004D02FC /* JSONKit.m in Sources */,
 				E7A596C61B8564D0004D02FC /* AppDelegate.m in Sources */,
+				E7DB1BC31BA123B90058A2B5 /* GLBaseEntity.m in Sources */,
 				E7A596F91B85658F004D02FC /* FMDatabaseQueue.m in Sources */,
-				E7A597051B8568CB004D02FC /* GLDBManager.m in Sources */,
+				E7DB1BC41BA123B90058A2B5 /* GLDBManager.m in Sources */,
 				E7A5970A1B8579CD004D02FC /* Person.m in Sources */,
 				E7A597101B857A1D004D02FC /* Person_sisters.m in Sources */,
-				E7A597061B8568CB004D02FC /* GLBaseEntity.m in Sources */,
 				E7A596C31B8564D0004D02FC /* main.m in Sources */,
 				E7A596F61B85658F004D02FC /* FMDatabase.m in Sources */,
 				E7A597191B857AA8004D02FC /* TableViewCell.m in Sources */,
