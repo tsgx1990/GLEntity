@@ -124,7 +124,9 @@
 //    NSLog(@"perDataArray:%@", perDataArray);
 //    NSLog(@"personDictArray:%@", [[perDataArray lastObject] dictionary]);
     
-    NSLog(@"count:%li", (long)[Person countMeetingCondition:@"where column_age='11'"]);
+    NSLog(@"dictionaryArray:%@", perDataArray.dictionaryArray);
+    NSLog(@"lastDictionary:%@", [[perDataArray lastObject] dictionary]);
+    NSLog(@"meeting count:%li", (long)[Person countMeetingCondition:@"where column_age='11'"]);
 }
 
 - (IBAction)botBtnPressed:(id)sender {

@@ -11,11 +11,6 @@
 @implementation Person
 
 #pragma mark - - override
-- (BOOL)deleteData
-{
-    NSString* conditon = [NSString stringWithFormat:@"where %@='%@'", self.propertyColumnMap[@"column_name"], self.column_name];
-    return [[self class] deleteDataByCondition:conditon];
-}
 
 + (NSString *)tableName
 {
@@ -26,6 +21,11 @@
 {
     return @{@"column_birthday":[Person_birthday class],
              @"column_sisters":[Person_sisters class]};
+}
+
++ (NSString *)primaryKey
+{
+    return @"column_name";
 }
 
 #pragma mark - - sql statement

@@ -272,6 +272,12 @@ NSString* convertValid(NSString* rawString)
     return _propertyColumnMap;
 }
 
+- (BOOL)updateValue:(id)value forKey:(NSString *)key
+{
+    [self setValue:value forKey:key];
+    return [self saveData];
+}
+
 + (NSArray *)entitiesWithDBResults:(NSArray *)dbResults
 {
     // 首先获取该类的属性和数据库字段的映射关系
@@ -300,6 +306,16 @@ NSString* convertValid(NSString* rawString)
     return [self entitiesByCondition:nil];
 }
 
+/*
+ 以下三个方法的相互调用实现了表的关联查询和entity的嵌套
+ 
+ + (NSArray*)entitiesByCondition:(NSString *)condition;
+ + (NSArray*)entities:(NSArray*)entities byEntityProperties:(NSArray*)entityProperties andArrayProperties:(NSArray*)arrayProperties;
+ + (NSArray*)entitiesByQueryClass:(Class)queryClass relateEntity:(GLBaseEntity*)relateEntity;
+ 
+ */
+
+// 查询子表，queryClass是子表对应的类名，relateEntity是父表的entity
 + (NSArray*)entitiesByQueryClass:(Class)queryClass relateEntity:(GLBaseEntity*)relateEntity
 {
     SEL entitiesSel = @selector(entitiesByCondition:); //NSSelectorFromString(@"entitiesByCondition:");
@@ -313,6 +329,7 @@ NSString* convertValid(NSString* rawString)
     return entitiesFunc(queryClass, entitiesSel, conditionFunc(queryClass, conditionSel, relateEntity));
 }
 
+// entity属性和array属性查询
 + (NSArray*)entities:(NSArray*)entities byEntityProperties:(NSArray*)entityProperties andArrayProperties:(NSArray*)arrayProperties
 {
     if (entityProperties || arrayProperties) {
@@ -344,6 +361,7 @@ NSString* convertValid(NSString* rawString)
     return entities;
 }
 
+// 条件查询
 + (NSArray*)entitiesByCondition:(NSString *)condition
 {
 //    NSDictionary* map = [self propertyColumnMap];
@@ -353,12 +371,14 @@ NSString* convertValid(NSString* rawString)
     NSArray* dbResults = [[GLDBManager shareInstance] queryBySql:querySql];
     NSArray* entities = [self entitiesWithDBResults:dbResults];
     
+    // 查询完一般属性，再查询entity属性和array属性
     NSArray* entityPropertyNames = [self propertyNamesOfEntityProperty];
     NSArray* arrayPropertyNames = [self propertyNamesOfArrayProperty];
     
     return [self entities:entities byEntityProperties:entityPropertyNames andArrayProperties:arrayPropertyNames];
 }
 
+// 根据条件condition，查询包含属性列表properties中所有属性的entity数组。
 + (NSArray*)entitiesWithProperties:(NSArray*)properties byCondition:(NSString*)condition
 {
     NSArray* entityPropertyNames = [self propertyNamesOfEntityProperty];
@@ -380,6 +400,27 @@ NSString* convertValid(NSString* rawString)
 {
     NSString* deleteSql = [NSString stringWithFormat:@"delete from %@ %@", [self tableName], convertValid(condition)];
     return [[GLDBManager shareInstance] deleteBySql:deleteSql];;
+}
+
+- (BOOL)deleteData
+{
+    NSString* filtPrimaryKey = [self.primaryKey stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSArray* primaryKeys = [filtPrimaryKey componentsSeparatedByString:@","];
+    NSMutableString* mCondition = [NSMutableString string];
+    if (primaryKeys.count) {
+        
+        [mCondition appendFormat:@"where %@='%@'",
+         self.propertyColumnMap[primaryKeys[0]],
+         [self valueForKey:primaryKeys[0]]];
+        
+        // 处理复合主键的情况
+        for (int i=1; i<primaryKeys.count; i++) {
+            [mCondition appendFormat:@" and %@='%@'",
+             self.propertyColumnMap[primaryKeys[i]],
+             [self valueForKey:primaryKeys[i]]];
+        }
+    }
+    return [[self class] deleteDataByCondition:mCondition];
 }
 
 + (BOOL)updateDataWithParams:(NSString*)params byCondition:(NSString*)condition
@@ -448,6 +489,11 @@ NSString* convertValid(NSString* rawString)
 - (NSString *)superTableName
 {
     return [self.superEntity tableName];
+}
+
+- (NSString *)primaryKey
+{
+    return [[self class] primaryKey];
 }
 
 @end

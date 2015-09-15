@@ -10,7 +10,7 @@
 
 @interface Person_birthday : GLBaseEntity
 
-// 外键，为使用方便，需要重写其getter方法
+// 外键，为使用方便，可以重写其getter方法
 @property (nonatomic, strong) NSString* foreign_name;
 
 @property (nonatomic, strong) NSString* column_year;

@@ -57,25 +57,25 @@ NSString* convertValid(NSString* rawString);
 + (NSString*)sqlQueryConditionRelating:(GLBaseEntity*)entity;
 
 /**
- *  如果属性中有数组或者entity属性，则需要实现该方法，用于指明他们所对应的entity类（Class），通过方法 + (Class)classForKey:(NSString*)propertyName 可以得到属性名为propertyName的属性所对应的entity类
+ *  如果属性中有数组或者entity属性，则需要实现该方法，用于指明他们所对应的entity类（Class）。方法 + (Class)classForKey:(NSString*)propertyName 就是通过该属性来获取一个entity属性或array属性对应的entity类
  *
- *  @return entity属性或Array属性与他们所对应的Class之间的映射关系
+ *  @return entity属性和Array属性与他们所对应的Class之间的映射关系
  */
 + (NSDictionary*)entitiesClassMap;
 
 /**
- *  删除本条数据，需要子类实现
+ *  必要时，需要在子类中指定主键。注意：该主键应该是属性名，而不是表中的字段名。当需要指定复合主键时需要用逗号隔开。
  *
- *  @return 删除成功，返回YES，失败，返回NO
+ *  @return 表中的主键
  */
-- (BOOL)deleteData;
++ (NSString*)primaryKey;
 
 /*
  父类有默认实现，也可在子类重写的方法
  */
 
 /**
- *  获取entity对应的表名，表名默认为：table_ + entityClassName。如果需要重新指定entity对应的表名，子类可以重写该方法，如果不是万不得已，建议不要这么做，以防止表名的重复
+ *  获取entity对应的表名，表名默认为：table_ + entityClassName。如果需要重新指定entity对应的表名，子类可以重写该方法，如果不是必须这么做，建议不要重写该方法改变entity的表名，以防止表名的重复
  *
  *  @return entity对应的表名
  */
@@ -87,30 +87,6 @@ NSString* convertValid(NSString* rawString);
  *  @return 属性名和表中字段名的映射关系
  */
 + (NSMutableDictionary*)propertyColumnMap;
-
-/**
- *  获取所有entity属性的属性名，子类直接调用，一般情况下不需要重写
- *
- *  @return entity属性的所有属性名
- */
-+ (NSArray*)propertyNamesOfEntityProperty;
-
-/**
- *  获取所有NSArray属性的属性名，子类直接调用，一般情况下不需要重写
- *
- *  @return NSArray属性的所有属性名
- */
-+ (NSArray*)propertyNamesOfArrayProperty;
-
-
-/* --- 待确定的方法 --- */
-/**
- *  当需要更新某个特定属性（且涉及到更新数据库）时才需要实现
- *
- *  @param value 需要更新到的值
- *  @param key   待更新属性的属性名
- */
-- (void)updateValue:(id)value forKey:(NSString*)key;
 
 
 @end
@@ -138,7 +114,26 @@ NSString* convertValid(NSString* rawString);
 @property (nonatomic, strong, readonly) NSString* superTableName;
 
 /**
- *  返回某个属性名对应的类，子类不要重写
+ *  主键或复合主键，只有在子类实现了+ (NSString*)primaryKey，该属性才可用
+ */
+@property (nonatomic, strong, readonly) NSString* primaryKey;
+
+/**
+ *  获取所有entity属性的属性名，子类直接调用，一般情况下不需要重写
+ *
+ *  @return entity属性的所有属性名
+ */
++ (NSArray*)propertyNamesOfEntityProperty;
+
+/**
+ *  获取所有NSArray属性的属性名，子类直接调用，一般情况下不需要重写
+ *
+ *  @return NSArray属性的所有属性名
+ */
++ (NSArray*)propertyNamesOfArrayProperty;
+
+/**
+ *  返回某个entity属性名或array属性名对应的类，子类不要重写
  *
  *  @param propertyName 属性名
  *
@@ -205,6 +200,14 @@ NSString* convertValid(NSString* rawString);
 + (BOOL)deleteDataByCondition:(NSString*)condition;
 
 /**
+ *  删除本条数据，可以在子类重写。但是建议在子类实现+ (NSString*)primaryKey方法，然后直接调用base类的- (BOOL)deleteData 方法来执行删除操作
+ *
+ *  @return 是否删除成功
+ */
+- (BOOL)deleteData;
+
+
+/**
  *  根据条件，更新数据
  *
  *  @param params    需要更新的字段，形式为：set column_name='dabao', column_age='12'
@@ -244,6 +247,16 @@ NSString* convertValid(NSString* rawString);
 - (BOOL)saveData;
 
 /**
+ *  更新某个特定属性（同时会更新数据库）
+ *
+ *  @param value 需要更新到的值
+ *  @param key   待更新的属性名
+ *
+ *  @return 更新是否成功
+ */
+- (BOOL)updateValue:(id)value forKey:(NSString*)key;
+
+/**
  *  查询出表中的所有数据
  *
  *  @return 一个entity列表
@@ -269,12 +282,17 @@ NSString* convertValid(NSString* rawString);
  */
 + (NSArray*)entitiesWithProperties:(NSArray*)properties byCondition:(NSString*)condition;
 
+///**
+// *  将entity对象转换成字典
+// *
+// *  @return entity对应的字典
+// */
+//- (NSDictionary*)dictionary;
+
 /**
- *  将entity对象转换成字典
- *
- *  @return entity对应的字典
+ *  entity对应的字典
  */
-- (NSDictionary*)dictionary;
+@property (nonatomic, strong, readonly) NSDictionary* dictionary;
 
 @end
 
@@ -322,11 +340,16 @@ NSString* convertValid(NSString* rawString);
  */
 - (NSArray*)minusArray:(NSArray*)anArray;
 
+///**
+// *  将entity数组转化成字典数组
+// *
+// *  @return 字典数组
+// */
+//- (NSArray*)dictionaryArray;
+
 /**
- *  将entity数组转化成字典数组
- *
- *  @return 字典数组
+ *  entity数组转化成的字典数组
  */
-- (NSArray*)dictionaryArray;
+@property (nonatomic, strong, readonly) NSArray* dictionaryArray;
 
 @end
