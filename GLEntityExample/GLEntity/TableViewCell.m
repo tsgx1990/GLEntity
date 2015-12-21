@@ -13,8 +13,9 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [[NSBundle mainBundle] loadNibNamed:@"TableViewCell" owner:nil options:nil][0];
-    
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self = [[NSBundle mainBundle] loadNibNamed:@"TableViewCell" owner:nil options:nil][0];
+    }
     return self;
 }
 

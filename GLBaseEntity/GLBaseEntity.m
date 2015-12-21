@@ -120,9 +120,27 @@ NSString* convertValid(NSString* rawString)
             if ([[value firstObject] isKindOfClass:[NSArray class]]) {
                 [entity setValue:[value JSONString] forKey:columnKey];
             }
+            
+            if (![value firstObject]) {
+                // 暂时不做任何处理
+            }
         }
         else { // 一般情况下为字符串
-            [entity setValue:value forKey:columnKey];
+//            [entity setValue:value forKey:columnKey];
+            
+            if ([entity respondsToSelector:NSSelectorFromString(columnKey)]) {
+                [entity setValue:value forKey:columnKey];
+            }
+            else {
+                @try {
+                    @throw [NSException exceptionWithName:@"No special property"
+                                                   reason:[NSString stringWithFormat:@"class:[%@] has no property:[%@]", [entity class], columnKey]
+                                                 userInfo:nil];
+                }
+                @catch (NSException *exception) {
+                    NSLog(@"exception->%@", exception);
+                }
+            }
         }
     }
     return entity;
