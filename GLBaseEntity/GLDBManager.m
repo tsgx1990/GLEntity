@@ -78,6 +78,8 @@
 
 - (BOOL)createTableByEntity:(GLBaseEntity*)entity withDB:(FMDatabase*)db
 {
+    NSAssert2([entity isKindOfClass:[GLBaseEntity class]], @"<%@>必须属于类[%@]", entity, [GLBaseEntity class]);
+    
     if (![db tableExists:entity.tableName]) {
         
         if ([entity respondsToSelector:@selector(sqlCreatingTable)]) {
@@ -111,8 +113,6 @@
 {
     for (id entity in dataArray) {
         
-//        NSMutableDictionary* mDict = [NSMutableDictionary dictionary];
-        
         unsigned int count;
         objc_property_t *properties = class_copyPropertyList([entity class], &count);
         for(int i = 0; i < count; i++)
@@ -122,42 +122,20 @@
             
             if ([propertyStr hasPrefix:GL_COLUMN_PREFIX]) {
                 
-                // 获取属性的数据类型
-                char* attrChar = property_copyAttributeValue(property, "T");
-                NSString* attrStr = [NSString stringWithFormat:@"%s", attrChar];
-                Class aClass = nil;
-                if ([attrStr hasPrefix:@"@"]) {
-                    attrStr = [attrStr stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"@\""]];
-                    aClass = NSClassFromString(attrStr);
-                }
-                free(attrChar);
-                
-                // 表示是对象类型
-                if (aClass) {
-                    id propertyValue = [entity valueForKey:propertyStr];
-                    
-                    // 不要根据aClass来判断对象的类型，因为这种方法获取的aClass并不能反映对象的真实类型
-                    if ([propertyValue isKindOfClass:[NSArray class]]) {
-                        NSLog(@"this is an array");
-                        
-                        if (![self saveDataArray:(NSArray*)propertyValue withFMDB:db]) {
-                            return NO;
-                        }
-                    }
-                    else if ([propertyValue isKindOfClass:[GLBaseEntity class]]) {
-                        NSLog(@"this is a GLBaseEntity");
-                        
-                        if (![self saveDataArray:@[propertyValue] withFMDB:db]) {
-                            return NO;
-                        }
-                    }
-                    else {
-//                        [mDict setValue:[entity valueForKey:propertyStr] forKey:propertyStr];
+                id propertyValue = [entity valueForKey:propertyStr];
+//                NSLog(@"propertyValue->Class:%@", [propertyValue class]);
+                if ([propertyValue isKindOfClass:[NSArray class]]) {
+                    if (![self saveDataArray:(NSArray*)propertyValue withFMDB:db]) {
+                        return NO;
                     }
                 }
-                // 表示是基本数据类型
+                else if ([propertyValue isKindOfClass:[GLBaseEntity class]]) {
+                    if (![self saveDataArray:@[propertyValue] withFMDB:db]) {
+                        return NO;
+                    }
+                }
                 else {
-//                    [mDict setValue:[entity valueForKey:propertyStr] forKey:propertyStr];
+                    // do nothing
                 }
             }
         }
@@ -187,6 +165,8 @@
 {
     __block BOOL success = YES;
     
+    // 关闭外键支持，否则无法完成关联表的插入操作
+    [self openForeignKey:NO];
     [self.fmdbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         @try {
             
@@ -196,6 +176,7 @@
             }
         }
         @catch (NSException *exception) {
+            NSLog(@"%s exception:%@", __func__, exception);
             *rollback = YES;
             success = NO;
         }
@@ -221,6 +202,7 @@
             }
         }
         @catch (NSException *exception) {
+            NSLog(@"%s exception:%@", __func__, exception);
             *rollback = YES;
             success = NO;
         }
@@ -248,6 +230,7 @@
             }
         }
         @catch (NSException *exception) {
+            NSLog(@"%s exception:%@", __func__, exception);
             *rollback = YES;
             success = NO;
         }

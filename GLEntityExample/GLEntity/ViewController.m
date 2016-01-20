@@ -29,6 +29,23 @@
     self.title = @"Person";
     // Do any additional setup after loading the view, typically from a nib.
     
+    [self.mTableView registerClass:[TableViewCell class] forCellReuseIdentifier:@"cellID"];
+    self.mTableView.tableHeaderView = self.titleBtn;
+//    self.mTableView.tableFooterView = self.botButton;
+    
+    [self loadDataInitial];
+}
+
+- (void)loadDataInitial
+{
+    [self.botButton setTitle:@"更新数据" forState:UIControlStateNormal];
+    [self loadData];
+    perDataArray = [Person entities];
+    [self.mTableView reloadData];
+}
+
+- (void)loadData
+{
     NSDictionary* dict = @{@"name":@"lgl",
                            @"birthday":@{@"year":@"1990",
                                          @"month":@"07",
@@ -56,7 +73,6 @@
                             @"sisters":@[],
                             @"phones":@[@"symbian", @"Nokia"]};
     
-    
 //    Person* per = [Person entityWithDict:dict];
 //    [per saveData];
     
@@ -64,10 +80,42 @@
              [Person entityWithDict:dict1],
              [Person entityWithDict:dict2]];
     [pers saveData];
+}
+
+- (void)loadNewData
+{
+    NSDictionary* dict = @{@"name":@"lgl",
+                           @"birthday":@{@"year":@"1990",
+                                         @"month":@"07",
+                                         @"day":@"01"},
+                           @"age":@"11",
+                           @"sisters":@[@{@"name":@"xcc", @"age":@"45"},
+                                        @{@"name":@"xyj", @"age":@"30"}],
+                           @"phones":@[@"android", @"apple"]};
     
-    [self.mTableView registerClass:[TableViewCell class] forCellReuseIdentifier:@"cellID"];
-    self.mTableView.tableHeaderView = self.titleBtn;
-//    self.mTableView.tableFooterView = self.botButton;
+    
+    NSDictionary* dict1 = @{@"name":@"lol123",
+                            @"birthday":@{@"year":@"2080",
+                                          @"month":@"01",
+                                          @"day":@"03"},
+                            @"age":@"4",
+                            @"sisters":@[@{@"name":@"lol1", @"age":@"15"},
+                                         @{@"name":@"lol2", @"age":@"60"},
+                                         @{@"name":@"lol3", @"age":@"88"}]};
+    
+    NSDictionary* dict2 = @{@"name":@"lcc",
+                            @"birthday":@{@"year":@"1980",
+                                          @"month":@"12",
+                                          @"day":@"12"},
+                            @"age":@"11",
+                            @"sisters":@[],
+                            @"phones":@[@"symbian", @"Nokia", @"ios", @"apple"]};
+    
+    
+    pers = @[[Person entityWithDict:dict],
+             [Person entityWithDict:dict1],
+             [Person entityWithDict:dict2]];
+    [pers saveData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,6 +148,10 @@
         subVC.mySisters = sisters;
         [self.navigationController pushViewController:subVC animated:YES];
     }
+    else {
+        UIAlertView* alert = [[UIAlertView alloc ]initWithTitle:@"您暂时没有姊妹" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
 }
 
 - (IBAction)deleteSelf:(id)sender {
@@ -129,12 +181,26 @@
     NSLog(@"meeting count:%li", (long)[Person countMeetingCondition:@"where column_age='11'"]);
 }
 
-- (IBAction)botBtnPressed:(id)sender {
+- (IBAction)botBtnPressed:(UIButton*)sender {
+    int flag = sender.tag % 3;
     
-    NSArray* deletedEntities = [perDataArray deleteData];
-    perDataArray = [perDataArray minusArray:deletedEntities];
+    if (flag == 0) {
+        [sender setTitle:@"清空数据" forState:UIControlStateNormal];
+        [self loadNewData];
+        perDataArray = [Person entities];
+    }
+    if (flag == 1) {
+        [sender setTitle:@"重新加载数据" forState:UIControlStateNormal];
+        NSArray* deletedEntities = [perDataArray deleteData];
+        perDataArray = [perDataArray minusArray:deletedEntities];
+    }
+    if (flag == 2) {
+        [sender setTitle:@"更新数据" forState:UIControlStateNormal];
+        [self loadData];
+        perDataArray = [Person entities];
+    }
     
     [self.mTableView reloadData];
-    
+    sender.tag++;
 }
 @end

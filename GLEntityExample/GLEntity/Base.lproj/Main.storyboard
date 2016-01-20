@@ -56,8 +56,11 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lfK-cA-pM6">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <state key="normal" title="删除">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="zpc-gF-puO"/>
+                                </constraints>
+                                <state key="normal" title="清空">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -68,13 +71,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="h8X-H4-JjX" secondAttribute="trailing" id="0LX-kF-teW"/>
+                            <constraint firstItem="lfK-cA-pM6" firstAttribute="trailing" secondItem="h8X-H4-JjX" secondAttribute="trailing" id="ATV-BM-21e"/>
                             <constraint firstItem="h8X-H4-JjX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NzF-Sx-3Tq"/>
-                            <constraint firstItem="lfK-cA-pM6" firstAttribute="leading" secondItem="h8X-H4-JjX" secondAttribute="leading" id="cIo-zw-EzS"/>
+                            <constraint firstItem="lfK-cA-pM6" firstAttribute="leading" secondItem="h8X-H4-JjX" secondAttribute="leading" id="VjK-bX-2eC"/>
                             <constraint firstItem="h8X-H4-JjX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="ff3-YQ-J4M"/>
-                            <constraint firstItem="lfK-cA-pM6" firstAttribute="trailing" secondItem="h8X-H4-JjX" secondAttribute="trailing" id="mov-0G-5WZ"/>
-                            <constraint firstAttribute="bottom" secondItem="lfK-cA-pM6" secondAttribute="bottom" id="whW-Os-C6I"/>
-                            <constraint firstItem="lfK-cA-pM6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="460" id="zhb-d8-tFr"/>
+                            <constraint firstItem="lfK-cA-pM6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ln6-GX-mTz"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lfK-cA-pM6" secondAttribute="bottom" constant="439" id="q8h-0r-1ve"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="q8h-0r-1ve"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="J8H-0r-TZq"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

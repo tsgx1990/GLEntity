@@ -98,49 +98,34 @@ NSString* convertValid(NSString* rawString)
         }
         else if ([value isKindOfClass:[NSArray class]]) {
             
-            // value是数据还要分为两种情况，一种是元素为字符串，一种是元素为字典
+            // value是数组还要分为两种情况，一种是元素为字符串，一种是元素为字典
             // 元素为字典的情况，将字典转换成entity对象
             // 元素为字符串的情况，将该数组转换成json对象
             
             // 其实还有一种情况，元素为数组，目前暂采用转换成json串的形式
             
-            if ([[value firstObject] isKindOfClass:[NSDictionary class]]) {
-                
+            id valueFirstObj = [value firstObject];
+            if (!valueFirstObj) {
+                // 暂采用置为nil的形式
+                [entity setValue:nil forKey:columnKey];
+            }
+            else if ([valueFirstObj isKindOfClass:[NSDictionary class]]) {
                 Class subEntityClass = [self subEntityClassForKey:key];
                 GLEntityArray* subEntities = [subEntityClass entitiesWithArray:(NSArray*)value];
                 [subEntities setSuperEntity:entity];
                 [entity setValue:subEntities forKey:columnKey];
             }
-            
-            if ([[value firstObject] isKindOfClass:[NSString class]]) {
-                [entity setValue:[value JSONString] forKey:columnKey];
-            }
-            
             // 目前暂采用转换成json串的形式
-            if ([[value firstObject] isKindOfClass:[NSArray class]]) {
+            else if ([valueFirstObj isKindOfClass:[NSArray class]]) {
                 [entity setValue:[value JSONString] forKey:columnKey];
             }
-            
-            if (![value firstObject]) {
-                // 暂时不做任何处理
+            // 一般情况下为NSString，也可能为NSNumber等数值对象
+            else {
+                [entity setValue:[value JSONString] forKey:columnKey];
             }
         }
         else { // 一般情况下为字符串
-//            [entity setValue:value forKey:columnKey];
-            
-            if ([entity respondsToSelector:NSSelectorFromString(columnKey)]) {
-                [entity setValue:value forKey:columnKey];
-            }
-            else {
-                @try {
-                    @throw [NSException exceptionWithName:@"No special property"
-                                                   reason:[NSString stringWithFormat:@"class:[%@] has no property:[%@]", [entity class], columnKey]
-                                                 userInfo:nil];
-                }
-                @catch (NSException *exception) {
-                    NSLog(@"exception->%@", exception);
-                }
-            }
+            [entity setValue:value forKey:columnKey];
         }
     }
     return entity;
@@ -164,11 +149,7 @@ NSString* convertValid(NSString* rawString)
 {
     NSString* entityClassStr = [NSString stringWithFormat:@"%@_%@", NSStringFromClass([self class]), key];
     Class subEntityClass = NSClassFromString(entityClassStr);
-    
-    NSString* assertStr = [NSString stringWithFormat:@"'[%@ class]' must be subclass of [GLBaseEntity class]", entityClassStr];
-    NSLog(@"assertStr:%@", assertStr);
-    NSAssert([subEntityClass isSubclassOfClass:[GLBaseEntity class]], assertStr);
-    
+    [self validateEntityClass:subEntityClass];
     return subEntityClass;
 }
 
@@ -177,11 +158,7 @@ NSString* convertValid(NSString* rawString)
 {
     NSString* entitiesClassStr = [NSString stringWithFormat:@"%@%@", NSStringFromClass([self class]), GL_PURELIST_SUFFIX];
     Class subEntitiesClass = NSClassFromString(entitiesClassStr);
-    
-    NSString* assertStr = [NSString stringWithFormat:@"'[%@ class]' must be subclass of [GLBaseEntity class]", entitiesClassStr];
-    NSLog(@"assertStr:%@", assertStr);
-    NSAssert([subEntitiesClass isSubclassOfClass:[GLBaseEntity class]], assertStr);
-    
+    [self validateEntityClass:subEntitiesClass];
     return subEntitiesClass;
 }
 
@@ -492,6 +469,23 @@ NSString* convertValid(NSString* rawString)
     return mEntityDict;
 }
 
+#pragma mark - - override setValue:forKey:
+- (void)setValue:(id)value forKey:(NSString *)key
+{
+    if ([self respondsToSelector:NSSelectorFromString(key)]) {
+        [super setValue:value forKey:key];
+    }
+    else {
+        @try {
+            @throw [NSException exceptionWithName:@"No special property"
+                                           reason:[NSString stringWithFormat:@"class:[%@] has no property:[%@]", [self class], key]
+                                         userInfo:nil];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"exception->%@", exception);
+        }
+    }
+}
 
 #pragma mark - - table name
 - (NSString *)tableName
@@ -513,6 +507,35 @@ NSString* convertValid(NSString* rawString)
 {
     return [[self class] primaryKey];
 }
+
+#pragma mark - -
+
++ (void)validateEntityClass:(Class)entityClass
+{
+    @try {
+        if (![entityClass isSubclassOfClass:[GLBaseEntity class]]) {
+            @throw [NSException exceptionWithName:@"not subclass of 'GLBaseEntity'"
+                                           reason:[NSString stringWithFormat:@"'%@' must be subclass of [GLBaseEntity class]", entityClass]
+                                         userInfo:nil];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"exception->%@", exception);
+    }
+}
+
+//- (void)setValue:(id)value forKey:(NSString *)key
+//{
+//    if ([value isKindOfClass:[NSNull class]]) {
+//        [super setValue:@"" forKeyPath:key];
+//    }
+//    else if ([value isKindOfClass:[NSNumber class]]) {
+//        [super setValue:[NSString stringWithFormat:@"%@", value] forKey:key];
+//    }
+//    else {
+//        [super setValue:value forKey:key];
+//    }
+//}
 
 @end
 
