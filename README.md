@@ -1,13 +1,13 @@
 #GLEntity
 ##简介
----
+
 用于数据模型和字典之间的相互转换，以及sqlite数据库的存取操作。
 ##使用说明
----
+
 构建的数据模型需要继承自GLBaseEntity类。
 	
-###规则
----
+####规则
+
 1. 模型的属性的命名规则为字典的key名加上column_前缀。
 
 
@@ -27,14 +27,14 @@
 8. 带foreign_和column_前缀的属性不要设为readOnly。
 
 
-###特别说明
----
+####特别说明
+
 * 一个数据模型类对应的表名默认情况下是类名加上table_前缀。也可以重写GLEntity类的 +(NSString*)tableName 方法重新给表命名，但是为了防止表名重复，不建议这么做。
 
 * 数据库表中的字段名默认和数据模型类的属性名相同。也可以重写GLEntity类的 +(NSMutableDictionary*)propertyColumnMap 方法该变二者之间的对应关系。
 
-###举例
----
+####举例
+
 对于下面这个字典，或者以这样的字典作为元素的数组
 
 	NSDictionary* dict = @{@"name":@"lgl",
@@ -94,6 +94,6 @@ Person_sisters类：
 
 详细使用方法请参见源码示例。
 ##安装说明
----
+
 1. 在Podfile文件中添加 pod "GLEntity"
 2. 运行 pod install 或 pod update
