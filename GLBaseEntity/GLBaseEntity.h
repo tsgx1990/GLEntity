@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "JSONKit.h"
 #import "GLDBManager.h"
+#import "NSString+AddFormatter.h"
 
 #define GLEntityArray     NSArray
 
@@ -191,13 +192,15 @@ NSString* convertValid(NSString* rawString);
 + (NSArray*)entitiesWithDBResults:(NSArray*)dbResults;
 
 /**
- *  根据条件，删除数据，如果为条件为nil，将删除表中的所有数据
+ *  根据条件，删除数据。如果为条件为nil，将删除表中的所有数据
  *
  *  @param condition 删除条件，写法为：where ...
  *
  *  @return 删除是否成功
  */
 + (BOOL)deleteDataByCondition:(NSString*)condition;
+
++ (BOOL)deleteDataByConditionFormat:(NSString*)conditionFormat, ...;
 
 /**
  *  删除本条数据，可以在子类重写。但是建议在子类实现+ (NSString*)primaryKey方法，然后直接调用base类的- (BOOL)deleteData 方法来执行删除操作
@@ -210,12 +213,23 @@ NSString* convertValid(NSString* rawString);
 /**
  *  根据条件，更新数据
  *
- *  @param params    需要更新的字段，形式为：set column_name='dabao', column_age='12'
+ *  @param params    需要更新的字段，形式为：set column_name='dabao', column_age='12'。也可以不加"set "，params也可以使用字典类型。
  *  @param condition 更新条件，如果为nil，则更新所有，形式为：where ...
  *
  *  @return 更新是否成功
  */
-+ (BOOL)updateDataWithParams:(NSString*)params byCondition:(NSString*)condition;
++ (BOOL)updateDataWithParams:(id)params byCondition:(NSString*)condition;
+
++ (BOOL)updateDataWithParams:(id)params byConditionFormat:(NSString *)conditionFormat, ...;
+
+/**
+ *  用新数据更新旧数据，新数据中如果有非关联表的字段缺失，则将出现空值。如果关联表的字段缺失，则原关联表中的数据不变。
+ *
+ *  @param rawData 更新用的原生数据（一个原生字典，或原生字典数组）
+ *
+ *  @return 是否更新成功
+ */
++ (BOOL)updateDataWithRawData:(id)rawData;
 
 /**
  *  满足条件的数据条数，直接调用
@@ -226,6 +240,8 @@ NSString* convertValid(NSString* rawString);
  */
 + (NSInteger)countMeetingCondition:(NSString*)condition;
 
++ (NSInteger)countMeetingConditionFormat:(NSString*)conditionFormat, ...;
+
 /**
  *  该方法的实现依赖于与其对应的静态方法，无需重写，直接调用
  *
@@ -234,6 +250,8 @@ NSString* convertValid(NSString* rawString);
  *  @return 满足条件的数据条数
  */
 - (NSInteger)countMeetingCondition:(NSString*)condition;
+
+- (NSInteger)countMeetingConditionFormat:(NSString*)conditionFormat, ...;
 
 /*
  不需要在子类实现的方法
@@ -272,6 +290,8 @@ NSString* convertValid(NSString* rawString);
  */
 + (NSArray*)entitiesByCondition:(NSString*)condition;
 
++ (NSArray*)entitiesByConditionFormat:(NSString*)conditionFormat, ...;
+
 /**
  *  根据查询条件和查询字段查出一个entity列表
  *
@@ -281,6 +301,8 @@ NSString* convertValid(NSString* rawString);
  *  @return 一个entity列表
  */
 + (NSArray*)entitiesWithProperties:(NSArray*)properties byCondition:(NSString*)condition;
+
++ (NSArray*)entitiesWithProperties:(NSArray*)properties byConditionFormat:(NSString*)conditionFormat, ...;
 
 ///**
 // *  将entity对象转换成字典

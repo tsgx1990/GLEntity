@@ -38,7 +38,6 @@
 //                     self.tableName];
 //    return sql;
     
-    
     NSString* sql = [NSString stringWithFormat:@"create table if not exists %@ \
                      ( \
                      %@        text, \
@@ -54,7 +53,15 @@
 
 - (NSString *)sqlInserting
 {
-    NSString* sql = [NSString stringWithFormat:@"replace into %@ \
+//    NSString* sql = [NSString stringWithFormat:@"replace into %@ \
+//                     (%@, %@, %@) values \
+//                     ('%i', '%@', '%@')",
+//                     self.tableName,
+//                     self.propertyColumnMap[@"column_age"], self.propertyColumnMap[@"column_name"], self.propertyColumnMap[@"column_phones"],
+//                     self.column_age, self.column_name, self.column_phones];
+//    return sql;
+    
+    NSString* sql = [NSString emptyStringWithFormat:@"replace into %@ \
                      (%@, %@, %@) values \
                      ('%i', '%@', '%@')",
                      self.tableName,

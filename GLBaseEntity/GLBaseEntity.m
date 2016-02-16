@@ -373,6 +373,16 @@ NSString* convertValid(NSString* rawString)
     return [self entities:entities byEntityProperties:entityPropertyNames andArrayProperties:arrayPropertyNames];
 }
 
++ (NSArray *)entitiesByConditionFormat:(NSString *)conditionFormat, ...
+{
+    va_list argPtr;
+    va_start(argPtr, conditionFormat);
+    NSMutableString* condition = [NSString handleFormatString:conditionFormat argumentsList:argPtr emptyString:@""];
+    va_end(argPtr);
+    
+    return [self entitiesByCondition:condition];
+}
+
 // 根据条件condition，查询包含属性列表properties中所有属性的entity数组。
 + (NSArray*)entitiesWithProperties:(NSArray*)properties byCondition:(NSString*)condition
 {
@@ -391,10 +401,30 @@ NSString* convertValid(NSString* rawString)
     return [self entities:entities byEntityProperties:entityColumns andArrayProperties:arrayColumns];
 }
 
++ (NSArray *)entitiesWithProperties:(NSArray *)properties byConditionFormat:(NSString *)conditionFormat, ...
+{
+    va_list argPtr;
+    va_start(argPtr, conditionFormat);
+    NSMutableString* condition = [NSString handleFormatString:conditionFormat argumentsList:argPtr emptyString:@""];
+    va_end(argPtr);
+    
+    return [self entitiesWithProperties:properties byCondition:condition];
+}
+
 + (BOOL)deleteDataByCondition:(NSString *)condition
 {
     NSString* deleteSql = [NSString stringWithFormat:@"delete from %@ %@", [self tableName], convertValid(condition)];
     return [[GLDBManager shareInstance] deleteBySql:deleteSql];;
+}
+
++ (BOOL)deleteDataByConditionFormat:(NSString *)conditionFormat, ...
+{
+    va_list argPtr;
+    va_start(argPtr, conditionFormat);
+    NSMutableString* condition = [NSString handleFormatString:conditionFormat argumentsList:argPtr emptyString:@""];
+    va_end(argPtr);
+    
+    return [self deleteDataByCondition:condition];
 }
 
 - (BOOL)deleteData
@@ -418,10 +448,51 @@ NSString* convertValid(NSString* rawString)
     return [[self class] deleteDataByCondition:mCondition];
 }
 
-+ (BOOL)updateDataWithParams:(NSString*)params byCondition:(NSString*)condition
++ (BOOL)updateDataWithParams:(id)params byCondition:(NSString*)condition
 {
-    NSString* updateSql = [NSString stringWithFormat:@"update %@ %@ %@", [self tableName], convertValid(params), convertValid(condition)];
+//    NSString* updateSql = [NSString stringWithFormat:@"update %@ %@ %@", [self tableName], convertValid(params), convertValid(condition)];
+//    return [[GLDBManager shareInstance] updateBySql:updateSql];
+    
+    NSMutableString* mParamsStr = [NSMutableString stringWithFormat:@"set "];
+    if ([params isKindOfClass:[NSString class]]) {
+        if ([params hasPrefix:mParamsStr]) {
+            mParamsStr = [params mutableCopy];
+        }
+        else {
+            [mParamsStr appendString:params];
+        }
+    }
+    else if ([params isKindOfClass:[NSDictionary class]]) {
+        NSMutableArray* mParamsArr = [NSMutableArray arrayWithCapacity:[params count]];
+        NSArray* paramsKeys = [params allKeys];
+        for (NSString* pKey in paramsKeys) {
+            id pValue = [params valueForKey:pKey];
+            [mParamsArr addObject:[NSString stringWithFormat:@"%@='%@'", pKey, pValue]];
+        }
+        [mParamsStr appendString:[mParamsArr componentsJoinedByString:@", "]];
+    }
+    else {
+        NSString* error = [NSString stringWithFormat:@"%@ --> 参数类型错误", params];
+        NSAssert(0, error);
+    }
+    NSString* updateSql = [NSString stringWithFormat:@"update %@ %@ %@", [self tableName], convertValid(mParamsStr), convertValid(condition)];
     return [[GLDBManager shareInstance] updateBySql:updateSql];
+}
+
++ (BOOL)updateDataWithParams:(id)params byConditionFormat:(NSString *)conditionFormat, ...
+{
+    va_list argPtr;
+    va_start(argPtr, conditionFormat);
+    NSMutableString* condition = [NSString handleFormatString:conditionFormat argumentsList:argPtr emptyString:@""];
+    va_end(argPtr);
+    
+    return [self updateDataWithParams:params byCondition:condition];
+}
+
++ (BOOL)updateDataWithRawData:(id)rawData
+{
+    NSArray* newEntities = [self entitiesWithData:rawData]; // newEntities可能是一个entity数组，也可能是一个entity对象
+    return [newEntities saveData];
 }
 
 + (NSInteger)countMeetingCondition:(NSString *)condition
@@ -430,9 +501,29 @@ NSString* convertValid(NSString* rawString)
     return [[GLDBManager shareInstance] countBySql:countSql];
 }
 
++ (NSInteger)countMeetingConditionFormat:(NSString *)conditionFormat, ...
+{
+    va_list argPtr;
+    va_start(argPtr, conditionFormat);
+    NSMutableString* condition = [NSString handleFormatString:conditionFormat argumentsList:argPtr emptyString:@""];
+    va_end(argPtr);
+    
+    return [self countMeetingCondition:condition];
+}
+
 - (NSInteger)countMeetingCondition:(NSString *)condition
 {
     return [[self class] countMeetingCondition:condition];
+}
+
+- (NSInteger)countMeetingConditionFormat:(NSString *)conditionFormat, ...
+{
+    va_list argPtr;
+    va_start(argPtr, conditionFormat);
+    NSMutableString* condition = [NSString handleFormatString:conditionFormat argumentsList:argPtr emptyString:@""];
+    va_end(argPtr);
+    
+    return [self countMeetingCondition:condition];
 }
 
 #pragma mark - - entity转字典

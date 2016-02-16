@@ -28,7 +28,7 @@
     
     NSString* sql = [NSString stringWithFormat:@"create table if not exists %@ \
                      (  \
-                     %@       text, \
+                     %@       text,  \
                      %@        text, \
                      %@       text, \
                      %@         text, \

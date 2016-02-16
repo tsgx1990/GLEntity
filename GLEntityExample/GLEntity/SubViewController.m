@@ -53,7 +53,7 @@
 {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
     Person_sisters* sister = self.mySisters[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"name:%@    age:%@", sister.column_name, sister.column_age];
+    cell.textLabel.text = [NSString stringWithFormat:@"name: %@  --  age: %@", sister.column_name, sister.column_age];
     return cell;
 }
 

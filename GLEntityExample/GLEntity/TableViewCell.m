@@ -15,6 +15,7 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self = [[NSBundle mainBundle] loadNibNamed:@"TableViewCell" owner:nil options:nil][0];
+        self.birthdayLabel.adjustsFontSizeToFitWidth = YES;
     }
     return self;
 }
@@ -31,11 +32,11 @@
 
 - (instancetype)cellWithInfo:(Person *)person
 {
-    self.nameLabel.text = person.column_name;
-    self.ageLabel.text = [NSString stringWithFormat:@"%i", person.column_age];
+    self.nameLabel.text = [NSString stringWithFormat:@"name: %@", person.column_name];
+    self.ageLabel.text = [NSString stringWithFormat:@"age: %i", person.column_age];
     
     Person_birthday* birthday = person.column_birthday;
-    self.birthdayLabel.text = [NSString stringWithFormat:@"生日:%@ %@ %@", birthday.column_year, birthday.column_month, birthday.column_day];
+    self.birthdayLabel.text = [NSString stringWithFormat:@"生日:%@ %@ %@ == phones:%@", birthday.column_year, birthday.column_month, birthday.column_day, person.column_phones];
     
     return self;
 }

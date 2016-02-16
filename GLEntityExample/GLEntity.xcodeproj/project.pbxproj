@@ -32,6 +32,7 @@
 		E7DB1BE11BA176130058A2B5 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BDC1BA176130058A2B5 /* FMResultSet.m */; };
 		E7DB1BF11BA17FFA0058A2B5 /* GLBaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BEE1BA17FFA0058A2B5 /* GLBaseEntity.m */; };
 		E7DB1BF21BA17FFA0058A2B5 /* GLDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DB1BF01BA17FFA0058A2B5 /* GLDBManager.m */; };
+		E7FF04001C72CBB700E39BA0 /* NSString+AddFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E7FF03FF1C72CBB700E39BA0 /* NSString+AddFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		E7DB1BEE1BA17FFA0058A2B5 /* GLBaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLBaseEntity.m; sourceTree = "<group>"; };
 		E7DB1BEF1BA17FFA0058A2B5 /* GLDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDBManager.h; sourceTree = "<group>"; };
 		E7DB1BF01BA17FFA0058A2B5 /* GLDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDBManager.m; sourceTree = "<group>"; };
+		E7FF03FE1C72CBB700E39BA0 /* NSString+AddFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AddFormatter.h"; sourceTree = "<group>"; };
+		E7FF03FF1C72CBB700E39BA0 /* NSString+AddFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AddFormatter.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +251,8 @@
 				E7DB1BEE1BA17FFA0058A2B5 /* GLBaseEntity.m */,
 				E7DB1BEF1BA17FFA0058A2B5 /* GLDBManager.h */,
 				E7DB1BF01BA17FFA0058A2B5 /* GLDBManager.m */,
+				E7FF03FE1C72CBB700E39BA0 /* NSString+AddFormatter.h */,
+				E7FF03FF1C72CBB700E39BA0 /* NSString+AddFormatter.m */,
 			);
 			name = GLBaseEntity;
 			path = ../GLBaseEntity;
@@ -370,6 +375,7 @@
 				E7DB1BCF1BA175450058A2B5 /* JSONKit.m in Sources */,
 				E7A5970A1B8579CD004D02FC /* Person.m in Sources */,
 				E7DB1BF21BA17FFA0058A2B5 /* GLDBManager.m in Sources */,
+				E7FF04001C72CBB700E39BA0 /* NSString+AddFormatter.m in Sources */,
 				E7A597101B857A1D004D02FC /* Person_sisters.m in Sources */,
 				E7A596C31B8564D0004D02FC /* main.m in Sources */,
 				E7A597191B857AA8004D02FC /* TableViewCell.m in Sources */,
