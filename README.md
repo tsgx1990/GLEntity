@@ -80,6 +80,7 @@ Person_birthday类：
 	@end
              
 Person_sisters类：
+
 	#import "GLBaseEntity.h"
 
 	@interface Person_sisters : GLBaseEntity
